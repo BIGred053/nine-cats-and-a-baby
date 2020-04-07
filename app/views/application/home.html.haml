@@ -1,1 +1,73 @@
-%h1 Hello, World!
+.container
+  .main-content
+    %h1
+      =image_tag('elephant-balloon.png', size: '150')
+      Baby McCullough is on her way!
+
+    -# %h2
+    -#   While we are hard at work getting the house ready for our little girl's arrival,
+    -#   the cats are mentally preparing themselves, as well!
+    -#
+    -# .cat-readiness
+    -#   .cat-pics
+    -#     %ul
+    -#       %li Tormund
+    -#       %li Lexington
+    -#       %li Sarabi
+    -#       %li Sam
+    -#       %li Macy
+    -#       %li Tristan
+    -#       %li Darby
+    -#       %li Petey
+    -#       %li Peter
+    -#   .cat-progress
+
+    %h2
+      Counting down the days until we meet our sweet little girl on June 5!
+      #countdown --d:--h:--m:--s
+
+    .note
+      %h3
+        We are sad that, with all of the craziness and uncertainty going on right now,
+        we won't be able to get together with all of our loved ones to celebrate our good news before
+        our little girl arrives around June 5. However, we wanted a place where we can
+        share updates with all of our loved ones as the big day gets nearer, and once she is here!
+
+  .registry
+    %h2 We are registered at:
+
+    #registry-buttons
+      %a.btn.btn-secondary{href: 'https://www.amazon.com/baby-reg/emmabest-mccullough-evan-mccullough-june-2020-zanesville/1EUARF2YSVE8A', target: '_blank'}
+        Amazon
+      %a.btn.btn-secondary{href: 'https://www.buybuybaby.com/store/giftregistry/viewregistryguest/548649256', target: '_blank'}
+        buybuyBaby
+
+:javascript
+  // Set the date we're counting down to
+  var countDownDate = new Date("Jun 5, 2020 00:00:00").getTime();
+
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("countdown").innerHTML = days + "d:" + hours + "h:"
+    + minutes + "m:" + seconds + "s";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "EXPIRED";
+    }
+  }, 1000);
